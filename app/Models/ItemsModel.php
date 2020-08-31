@@ -17,6 +17,17 @@ class ItemsModel extends Model
             return $this->findAll();
         }
         return $this->where(['id' => $id])->first();
+
+        //$builder = $this->db->TABLE('t_items');
+        //$builder = $this->SELECT('id_items', 'name_items', 'unit_items', 'color_items');
+        //$builder = $this->FROM('t_items');
+        //$builder = $this->JOIN('m_item', 'id_item = id_items', 'left');
+        //if ($id != null) {
+        //    $builder = $this->WHERE('id_items', $id)->andWHERE('name_items', $id);
+        //}
+        //$builder = $this->group_by('id_items as id_item');
+        //$builder = $this->order_by('id_items', 'asc');
+        //return  $builder->get();
     }
 
     public function saveItem($data)

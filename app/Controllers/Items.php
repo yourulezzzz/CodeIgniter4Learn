@@ -44,7 +44,7 @@ class Items extends BaseController
             'title' => ' Insert | Dev',
             'validation' => \Config\Services::validation(),
             //'item' => $this->itemsModel->getItems(),
-            'item' => $item->paginate(5, 'item'),
+            'item' => $item->paginate(7, 'item'),
             'pager' => $this->itemsModel->pager,
             'currentPage' => $currentPage
         ];
