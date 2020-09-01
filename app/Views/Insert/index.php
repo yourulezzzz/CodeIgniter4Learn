@@ -140,14 +140,13 @@
                                                     <td> <?= $i['unit_items']; ?> </td>
                                                     <td> <?= $i['color_items']; ?> </td>
                                                     <td>
-                                                        <!-- Button Modal Info -->
+                                                        <!-- Button Modal Edit -->
 
-                                                        <form action="" data-toggle="modal" data-target="#infoModal" href="" class="d-inline">
-                                                            <button method="post" type="button" class="btn btn-info">
-                                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                                    <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z" />
-                                                                    <circle cx="8" cy="4.5" r="1" />
+                                                        <form action="" data-toggle="modal" data-target="#editModal" href="" class="d-inline">
+                                                            <button method="post" type="button" class="btn btn-warning">
+                                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                                                                 </svg>
                                                             </button>
                                                         </form>
@@ -167,10 +166,10 @@
                                             </tr>
                                         <?php endforeach; ?>
                                         </tbody>
-                                        <!-- Pop Up Modal Info -->
+                                        <!-- Pop Up Modal Edit -->
                                         <?php foreach ($item as $i) : ?>
                                             <form action="" method="post">
-                                                <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -180,16 +179,30 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                EDIT BELUM TERSEDIA!
+                                                                <form action="" method="POST" enctype="multipart/form-data" method="POST" id="EditModal">
+                                                                    <?= csrf_field(); ?>
+                                                                    <input type="hidden" id="editId" value="">
+                                                                    <div class="form-group">
+                                                                        <label for="id_items"> Code Items </label>
+                                                                        <input type="text" name="id_items" class="form-control" id="id_items" placeholder="Kode Barang">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="name_items"> Name Items </label>
+                                                                        <input type="text" name="name_items" class="form-control" id="name_items" placeholder="Nama Barang">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="unit_items"> Unit Items </label>
+                                                                        <input type="text" name="unit_items" class="form-control" id="unit_items" placeholder="Jumlah Barang">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="color_items"> Color Items </label>
+                                                                        <input type="tel" name="color_items" class="form-control" id="color_items" placeholder="Warna Barang">
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <!-- Button Edit Selected Items -->
-                                                                <a href="" class="btn btn-warning">
-                                                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                                                    </svg>
-                                                                </a>
+                                                                <!-- Button Submit Edit Selected Items -->
+
                                                                 <!-- Close Pop Up -->
                                                                 <a href="" class="btn btn-secondary" data-dismiss="modal">
                                                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-back" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -199,18 +212,49 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                             </form>
-                                        <?php endforeach; ?>
-                                        <!-- End Info -->
-                                    </table>
-                                    <?= $pager->links('item', 'items_pagination') ?>
                                 </div>
                             </div>
                         </div>
+                        </form>
+                    <?php endforeach; ?>
+                    <!-- End Info -->
+                    </table>
+                    <?= $pager->links('item', 'items_pagination') ?>
                     </div>
-                </main>
             </div>
         </div>
     </div>
+    </main>
+    </div>
+    </div>
+    </div>
 </body>
+<script type="text/javascript">
+    $(function() {
+        //Take the data from the TR during the event button
+        $('table').on('click', 'button.editingTRbutton', function(ele) {
+            //the <tr> variable is use to set the parentNode from "ele
+            var tr = ele.target.parentNode.parentNode;
+
+            //I get the value from the cells (td) using the parentNode (var tr)
+            var id = tr.cells[0].textContent;
+            var id_items = tr.cells[1].textContent;
+            var name_items = tr.cells[2].textContent;
+            var unit_items = tr.cells[3].textContent;
+            var color_items = tr.cells[4].textContent;
+            var level = tr.cells[5].textContent;
+
+            //Prefill the fields with the gathered information
+            $('h5.modal-title').html('Edit Items : ' + id_items);
+            $('#id_items').val(id_items);
+            $('#name_items').val(name_items);
+            $('#unit_items').val(unit_items);
+            $('#color_items').val(color_items);
+
+            //If you need to update the form data and change the button link
+            $("form#EditModal").attr('action', window.location.href + '/update/' + id);
+            $("a#saveModalButton").attr('href', window.location.href + '/update/' + id);
+        });
+    });
+</script>
