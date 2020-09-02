@@ -26,7 +26,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control <?= ($validation->hasError('user_email')) ? 'is-invalid' : ''; ?>" id="user_email" name="user_email" placeholder="Email Address">
+                                            <input type="text" class="form-control <?= ($validation->hasError('user_email')) ? 'is-invalid' : ''; ?>" value="<?= old('user_email'); ?>" id="user_email" name="user_email" placeholder="Email Address">
                                             <div id="user_email" class="invalid-feedback">
                                                 <?= $validation->getError('user_email'); ?>
                                             </div>

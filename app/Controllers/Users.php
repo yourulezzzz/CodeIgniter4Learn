@@ -48,9 +48,12 @@ class Users extends BaseController
                 ]
             ],
             'user_email' => [
-                'rules' => 'required',
+                'rules' => 'required|valid_email|valid_emails|is_unique[t_users.user_email]',
                 'errors' => [
                     'required' => 'Email Harus diisi.',
+                    'is_unique' => 'Email sudah terdaftar.',
+                    'valid_email' => 'Email tidak Valid.',
+                    'valid_emails' => 'Email tidak Valid.'
                 ]
             ],
             'password' => [
@@ -60,10 +63,10 @@ class Users extends BaseController
                 ]
             ],
             'password2' => [
-                'rules' => 'required|differs[t_users.password]',
+                'rules' => 'required|matches[password]',
                 'errors' => [
                     'required' => 'Password Repeat Harus diisi.',
-                    'differs' => 'Password Repeat Harus sama dengan Password'
+                    'matches' => 'Password Repeat Harus sama dengan Password'
                 ]
             ]
         ])) {
@@ -74,8 +77,8 @@ class Users extends BaseController
         $data = array(
             'name' => $this->request->getVar('name'),
             'user_email' => $this->request->getVar('user_email'),
-            'password' => $this->request->getVar('password'),
-            'password2' => $this->request->getVar('password2')
+            'password' => md5($this->request->getVar('password')),
+            'password2' => md5($this->request->getVar('password2'))
         );
 
         session()->setFlashdata('pesan', 'Success Create Account.');
