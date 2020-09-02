@@ -36,9 +36,9 @@ class ItemsModel extends Model
         return $query;
     }
 
-    public function updateItem($data, $id)
+    public function updateItem($data)
     {
-        $query = $this->db->table('t_items')->update($data, array('id_items' => $id));
+        $query = $this->db->table('t_items')->update($data, array('id_items' => $data));
         return $query;
     }
 

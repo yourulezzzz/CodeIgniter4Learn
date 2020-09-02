@@ -71,7 +71,19 @@ class Items extends BaseController
     public function detail($id)
     {
         $item = $this->itemsModel->getItems($id);
-        dd($item);
+        //d($item);
+
+        $itemsModel = new ItemsModel();
+        $data = array(
+            'item' =>  $itemsModel->find($id),
+            'title' => 'Form Edit Items | Dev',
+        );
+
+        echo view('templates/header', $data);
+        echo view('templates/sidebar');
+        echo view('templates/topbar');
+        echo view('insert/edit');
+        echo view('templates/footer');
     }
 
 
@@ -131,6 +143,57 @@ class Items extends BaseController
         session()->setFlashdata('pesan', 'Items Berhasil diHapus.');
         return redirect()->to('/items');
     }
+
+
+    public function update()
+    {
+        //Validasi Input
+        if (!$this->validate([
+            'id_items' => [
+                'rules' => 'required|max_length[30]',
+                'errors' => [
+                    'required' => 'Kode Barang Harus diisi.',
+                    'max_length' => 'Kode Barang diinput Maksimal 30 Karakter.'
+                ]
+            ],
+            'name_items' => [
+                'rules' => 'required|max_length[50]',
+                'errors' => [
+                    'required' => 'Nama Barang Harus diisi.',
+                    'max_length' => 'Nama Barang diinput Maksimal 50 Karakter.'
+                ]
+            ],
+            'color_items' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Warna Barang Harus diisi.'
+                ]
+            ],
+            'unit_items' => [
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => 'Jumlah Barang Harus diisi.',
+                    'numeric' => 'Jumlah Barang Harus diinput Karakter Angka.'
+                ]
+            ]
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->to('/items')->withInput()->with('validation', $validation);
+        }
+        $model = new ItemsModel();
+        $data = array(
+            'id_items' => $this->request->getVar('id_items'),
+            'name_items' => $this->request->getVar('name_items'),
+            'unit_items' => $this->request->getVar('unit_items'),
+            'color_items' => $this->request->getVar('color_items')
+        );
+
+        session()->setFlashdata('pesan', 'Items Berhasil ditambah.');
+
+        $model->updateItem($data);
+        return redirect()->to('/items');
+    }
+
 
     //--------------------------------------------------------------------
 
