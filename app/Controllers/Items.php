@@ -24,7 +24,9 @@ class Items extends BaseController
         //$item = $db->query("SELECT id_items, name_items, unit_items as total, color_items, price_item FROM t_items INNER JOIN m_item ON t_items.id_items = m_item.id_item GROUP BY id_items ORDER BY id");
         //$item = $db->query("SELECT id_items , name_items, SUM(t_items.unit_items) as total, color_items, price_item  FROM t_items INNER JOIN m_item ON t_items.id_items = m_item.id_item GROUP BY id_items, name_items ");
         //$item = $db->query("SELECT id_items , name_items, unit_items, color_items, price_item  FROM t_items INNER JOIN m_item ON t_items.id_items = m_item.id_item");
-        //foreach ($item->getResultArray() as $row)
+        //foreach ($item->getResultArray() as $row) {
+        //    d($row);
+        //}
 
         //$row = [
         //    'row' => $this->itemsModel->getItems()

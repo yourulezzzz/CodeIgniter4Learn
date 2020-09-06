@@ -16,6 +16,8 @@ class UsersModel extends Model
         return view('Users/index');
     }
 
+
+
     public function saveRegis($data)
     {
         $query = $this->db->table('t_users')->insert($data);

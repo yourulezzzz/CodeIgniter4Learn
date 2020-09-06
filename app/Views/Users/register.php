@@ -19,12 +19,22 @@
                                     <?php endif; ?>
                                     <form action="/users/regis" method="post">
                                         <?= csrf_field(); ?>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control <?= ($validation->hasError('name')) ? 'is-invalid' : ''; ?>" value="<?= old('name'); ?>" id="name" name="name" placeholder="Full Name" autofocus>
-                                            <div id="name" class="invalid-feedback">
-                                                <?= $validation->getError('name'); ?>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-7 mb-3 mb-sm-0">
+                                                <input type="name" class="form-control <?= ($validation->hasError('name')) ? 'is-invalid' : ''; ?>" value="<?= old('name'); ?>" id="name" name="name" placeholder="Full Name" autofocus>
+                                                <div id="name" class="invalid-feedback">
+                                                    <?= $validation->getError('name'); ?>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <input type="username" class="form-control <?= ($validation->hasError('username')) ? 'is-invalid' : ''; ?>" value="<?= old('username'); ?>" id="username" name="username" placeholder="Username">
+                                                <div id="username" class="invalid-feedback">
+                                                    <?= $validation->getError('username'); ?>
+                                                </div>
                                             </div>
                                         </div>
+
                                         <div class="form-group">
                                             <input type="text" class="form-control <?= ($validation->hasError('user_email')) ? 'is-invalid' : ''; ?>" value="<?= old('user_email'); ?>" id="user_email" name="user_email" placeholder="Email Address">
                                             <div id="user_email" class="invalid-feedback">
